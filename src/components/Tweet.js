@@ -20,7 +20,7 @@ const Tweet = () => {
             aria-describedby="tweet"
           />
           <div className="input-group-append">
-            <button className="btn btn-light">Tweet</button>
+            <button className="btn btn-outline-primary">Tweet</button>
           </div>
         </div>
       </div>

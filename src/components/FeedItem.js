@@ -3,7 +3,7 @@ import ProfilePic from "./ProfilePic";
 
 const FeedItem = ({ item }) => {
   return (
-    <div className="bg-light border row">
+    <div className="bg-light border border row">
       <div className="col-lg-2">
         <ProfilePic image={item.user.profileImg} />
       </div>
