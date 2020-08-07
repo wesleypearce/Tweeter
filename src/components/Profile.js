@@ -11,7 +11,7 @@ const Profile = ({
   profile_image_url_https
 }) => {
   return (
-    <div className="text-white">
+    <div>
       <ProfilePic image={profile_image_url_https} />
       <h1 className="display-4">{name}</h1>
       <p>{description}</p>

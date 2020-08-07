@@ -1,4 +1,11 @@
 // Custom.scss
 // Option A: Include all of Bootstrap
 
+$blue: #052F5F;
+$sapphire: #005377;
+$red: #AF1B3F;
+$pink: #F9627D;
+$grey: #DCDCDD;
+
+$theme-colors: ("primary": $blue);
 @import "../node_modules/bootstrap/scss/bootstrap";

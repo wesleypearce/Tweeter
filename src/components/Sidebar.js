@@ -5,7 +5,8 @@ import {
   MailIcon,
   ListUnorderedIcon,
   PersonIcon,
-  TriangleDownIcon
+  TriangleDownIcon,
+  SearchIcon
 } from "@primer/octicons-react";
 
 const Sidebar = () => {
@@ -13,6 +14,9 @@ const Sidebar = () => {
     <div>
       <div className="mt-2">
         <MenuButton name="Home" icon={<HomeIcon />} />
+      </div>
+      <div className="mt-2">
+        <MenuButton name="Search" icon={<SearchIcon />} />
       </div>
       <div className="mt-2">
         <MenuButton name="Messages" icon={<MailIcon />} />
