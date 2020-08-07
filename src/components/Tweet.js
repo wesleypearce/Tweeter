@@ -1,5 +1,6 @@
 import React from "react";
 import ProfilePic from "./ProfilePic";
+import Input from "./Input";
 
 const Tweet = () => {
   return (
@@ -12,17 +13,7 @@ const Tweet = () => {
         />
       </div>
       <div className="col-lg-10 mt-auto mb-1">
-        <div className="input-group">
-          <input
-            className="form-control"
-            type="text"
-            id="tweet"
-            aria-describedby="tweet"
-          />
-          <div className="input-group-append">
-            <button className="btn btn-outline-primary">Tweet</button>
-          </div>
-        </div>
+        <Input inputFunction="Tweet" />
       </div>
     </div>
   );
