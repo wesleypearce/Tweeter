@@ -4,13 +4,10 @@ import Navbar from "./Navbar";
 import HelloBox from "./HelloBox";
 import Tweet from "./Tweet";
 import UserFrame from "./UserFrame";
+import Auth from "./Auth";
 
 const App = () => {
-  return (
-    <div>
-      <UserFrame />
-    </div>
-  );
+  return <Auth />;
 };
 
 ReactDOM.render(<App />, document.querySelector("#root"));
