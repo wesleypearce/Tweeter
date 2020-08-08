@@ -8,12 +8,15 @@ const Auth = () => {
   };
 
   return (
-    <TwitterLogin
-      authCallback={handleAuth}
-      consumerKey={consumerKey}
-      consumerSecret={consumerSecret}
-      callbackUrl="http://localhost:1234/callback"
-    />
+    <div>
+      <TwitterLogin
+        authCallback={handleAuth}
+        consumerKey={consumerKey}
+        consumerSecret={consumerSecret}
+        callbackUrl="http://localhost:1234/callback"
+        className="mx-auto"
+      />
+    </div>
   );
 };
 

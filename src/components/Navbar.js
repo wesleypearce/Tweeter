@@ -3,9 +3,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark mb-5">
-      <a className="navbar-brand" href="#">
-        Tweeter
-      </a>
+      <p className="navbar-brand">Tweeter</p>
       <button
         className="navbar-toggler"
         type="button"
@@ -17,29 +15,6 @@ const Navbar = () => {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <form className="form-inline my-2 my-lg-0 ml-auto">
-          <input
-            className="form-control mr-sm-2"
-            type="email"
-            placeholder="Twitter login"
-            aria-label="Twitter login"
-          />
-          <input
-            className="form-control mr-sm-2"
-            type="password"
-            placeholder="Password"
-            aria-label="Password"
-          />
-          <button
-            className="btn btn-outline-primary my-2 my-sm-0"
-            type="submit"
-          >
-            Login
-          </button>
-        </form>
-      </div>
     </nav>
   );
 };
