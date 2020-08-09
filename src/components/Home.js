@@ -1,10 +1,10 @@
 import React from "react";
 import HelloBox from "./HelloBox";
 
-const Home = () => {
+const Home = ({ setUser, setAuthError }) => {
   return (
     <div>
-      <HelloBox />
+      <HelloBox setUser={setUser} setAuthError={setAuthError} />
     </div>
   );
 };
