@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Tweet from "./Tweet";
 import Sidebar from "./Sidebar";
 import Feed from "./Feed";
-import SearchBox from "./SearchBox";
 import Profile from "./Profile";
 
-const UserFrame = () => {
+const Dashboard = props => {
+  const [token, setToken] = useState("");
+  const [tokenSecret, setTokenSecret] = useState("");
+
+  useEffect(() => {
+    const { user } = props.location.state;
+    if (user !== undefined) {
+      setToken(user.oauth_token);
+      setTokenSecret(user.oauth_token_secret);
+    }
+  });
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -38,4 +48,4 @@ const UserFrame = () => {
   );
 };
 
-export default UserFrame;
+export default Dashboard;
