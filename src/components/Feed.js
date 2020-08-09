@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FeedItem from "./FeedItem";
+import axios from "axios";
 
 const testFeed = [
   {
@@ -34,7 +35,17 @@ const testFeed = [
   }
 ];
 
-const Feed = () => {
+const Feed = ({ user }) => {
+  useEffect(() => {
+    if (user !== null) {
+      axios
+        .get(
+          `https://api.twitter.com/1.1/statuses/lookup.json?id=${user.user_id}`
+        )
+        .then(data => console.log(data))
+        .catch(e => console.error(e));
+    }
+  });
   const renderFeed = () => {
     return testFeed.map(item => {
       return <FeedItem key={item.text} item={item} />;

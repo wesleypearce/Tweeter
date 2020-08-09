@@ -5,14 +5,12 @@ import Feed from "./Feed";
 import Profile from "./Profile";
 
 const Dashboard = props => {
-  const [token, setToken] = useState("");
-  const [tokenSecret, setTokenSecret] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const { user } = props.location.state;
     if (user !== undefined) {
-      setToken(user.oauth_token);
-      setTokenSecret(user.oauth_token_secret);
+      setUser(user);
     }
   });
 
@@ -41,7 +39,7 @@ const Dashboard = props => {
           <div className="mb-2 mt-2">
             <Tweet />
           </div>
-          <Feed />
+          <Feed user={user} />
         </div>
       </div>
     </div>
