@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Navbar from "./Navbar";
-import HelloBox from "./HelloBox";
-import Tweet from "./Tweet";
-import UserFrame from "./UserFrame";
-import Auth from "./Auth";
 import Home from "./Home";
+import UserFrame from "./UserFrame";
+import { Router } from "@reach/router";
 
 const App = () => {
-  return <Home />;
+  return (
+    <Router>
+      <Home path="/" />
+      <UserFrame path="/dashboard" />
+    </Router>
+  );
 };
 
 ReactDOM.render(<App />, document.querySelector("#root"));
