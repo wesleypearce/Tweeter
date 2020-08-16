@@ -1,22 +1,25 @@
 import React from "react";
-import TwitterLogin from "react-twitter-login";
-import { consumerSecret, consumerKey } from "../../keys";
 
-const Auth = ({ setUser, setAuthError }) => {
-  const handleAuth = (e, data) => {
-    if (e) setAuthError(e);
-    setUser(data);
+const Auth = () => {
+  const handleClick = () => {
+    window.open("http://localhost:5000/auth/twitter", "_self");
   };
 
   return (
-    <div>
-      <TwitterLogin
-        authCallback={handleAuth}
-        consumerKey={consumerKey}
-        consumerSecret={consumerSecret}
-        callbackUrl="http://localhost:1234/"
+    <div className="text-center">
+      <input
+        type="image"
+        alt="Twitter Login"
+        onClick={handleClick}
         className="mx-auto"
+        src="https://cdn.cms-twdigitalassets.com/content/dam/developer-twitter/auth-docs/sign-in-with-twitter-gray.png.img.fullhd.medium.png"
       />
+      {/* <button
+        className="btn-block rounded btn-light mx-auto"
+        onClick={handleClick}
+      >
+        Log In with Twitter
+      </button> */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "./Auth";
 
-const HelloBox = ({ setUser, setAuthError }) => {
+const HelloBox = () => {
   return (
     <div className="col-lg-6 text-white mx-auto p-5">
       <h1 className="display-1 text-center">Hello!</h1>
@@ -9,7 +9,7 @@ const HelloBox = ({ setUser, setAuthError }) => {
       <div className="col-lg-6 col-md-5 mx-auto mt-3 mb-3">
         {/* <button className="btn-block btn-light mx-auto">Sign Up</button>
         <button className="btn-block btn-light mx-auto">Log In</button> */}
-        <Auth setUser={setUser} setAuthError={setAuthError} />
+        <Auth />
       </div>
 
       <p className="text-center lead">

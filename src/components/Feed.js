@@ -37,15 +37,15 @@ const testFeed = [
 
 const Feed = ({ user }) => {
   useEffect(() => {
-    if (user !== null) {
-      axios
-        .get(
-          `https://api.twitter.com/1.1/statuses/lookup.json?id=${user.user_id}`
-        )
-        .then(data => console.log(data))
-        .catch(e => console.error(e));
-    }
+    // if (user !== null) {
+    //   console.log(user);
+    //   axios
+    //     .get(`http://localhost:5000/test`)
+    //     .then(data => console.log(data))
+    //     .catch(e => console.error(e));
+    // }
   });
+
   const renderFeed = () => {
     return testFeed.map(item => {
       return <FeedItem key={item.text} item={item} />;

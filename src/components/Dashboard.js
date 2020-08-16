@@ -3,16 +3,18 @@ import Tweet from "./Tweet";
 import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 import Profile from "./Profile";
+import axios from "axios";
 
-const Dashboard = props => {
-  const [user, setUser] = useState(null);
-
+const Dashboard = () => {
+  const [user, setUser] = useState({ screen_name: "Undefined" });
   useEffect(() => {
-    const { user } = props.location.state;
-    if (user !== undefined) {
-      setUser(user);
-    }
-  });
+    axios
+      .get("http://localhost:5000/", { withCredentials: true })
+      .then(response => {
+        setUser(response.data._json);
+      })
+      .catch(e => console.error(e));
+  }, []);
 
   return (
     <div className="container-fluid">
@@ -23,15 +25,13 @@ const Dashboard = props => {
         <div className="col-lg-3 border border order-lg-1 text-white">
           <div className="d-none d-lg-block">
             <Profile
-              name="Midoriya"
-              screen_name="Midoriya"
-              url="https://www.wesleypearce.com"
-              description="All Might's successor!"
-              followers_count={27}
-              profile_banner_url_https={null}
-              profile_image_url_https={
-                "https://i2.wp.com/geekvibesnation.com/wp-content/uploads/2018/12/Izuku_Midoriya.png?fit=982%2C720&ssl=1"
-              }
+              name={user.name}
+              screen_name={user.screen_name}
+              url={user.url}
+              description={user.description}
+              followers_count={user.followers_count}
+              profile_banner_url_https={user.profile_banner_url_https}
+              profile_image_url_https={user.profile_image_url_https}
             />
           </div>
         </div>
