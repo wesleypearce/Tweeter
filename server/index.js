@@ -2,6 +2,8 @@ var express = require("express");
 var passport = require("passport");
 var Strategy = require("passport-twitter").Strategy;
 const cors = require("cors");
+const mongoose = require("mongoose");
+const User = require("./resources/User");
 
 // Configure the Twitter strategy for use by Passport.
 //
@@ -19,12 +21,20 @@ passport.use(
       includeEmail: true
     },
     function(token, tokenSecret, profile, cb) {
-      // In this example, the user's Twitter profile is supplied as the user
-      // record.  In a production-quality application, the Twitter profile should
-      // be associated with a user record in the application's database, which
-      // allows for account linking and authentication with other identity
-      // providers.
-      return cb(null, profile);
+      User.findOrCreate(
+        {
+          twitterId: profile.id,
+          name: profile._json.name,
+          screen_name: profile._json.screen_name,
+          url: profile._json.url,
+          description: profile._json.description,
+          followers_count: profile._json.followers_count,
+          profile_image_url_https: profile._json.profile_image_url_https
+        },
+        function(err, user) {
+          return cb(err, user);
+        }
+      );
     }
   )
 );
@@ -72,6 +82,17 @@ app.use(
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
+
+mongoose.connect("mongodb://wes:SedrfT6^@ds029496.mlab.com:29496/tweeter", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function() {
+  console.log("mongoose connected");
+});
 
 // Define routes.
 app.get("/", (req, res) => {
