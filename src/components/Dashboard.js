@@ -12,13 +12,12 @@ const Dashboard = () => {
       .get("http://localhost:5000/", { withCredentials: true })
       .then(response => {
         setUser(response.data);
-        console.log(response.data);
       })
       .catch(e => console.error(e));
   }, []);
 
   if (user == null) {
-    return <div>loading...</div>;
+    return <div className="text-white">loading...</div>;
   } else {
     return (
       <div className="container-fluid">
