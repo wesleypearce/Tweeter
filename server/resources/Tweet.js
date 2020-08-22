@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const tweetSchema = mongoose.Schema(
   {
-    body: {
+    tweet: {
       type: String,
       required: true
     },

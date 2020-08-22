@@ -4,6 +4,7 @@ var Strategy = require("passport-twitter").Strategy;
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./resources/User");
+const Tweet = require("./resources/Tweet");
 
 // Configure the Twitter strategy for use by Passport.
 //
@@ -21,6 +22,7 @@ passport.use(
       includeEmail: true
     },
     function(token, tokenSecret, profile, cb) {
+      console.log(profile);
       User.findOrCreate(
         {
           twitterId: profile.id,
@@ -77,6 +79,7 @@ app.use(
     saveUninitialized: true
   })
 );
+app.use(express.json());
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
@@ -108,6 +111,45 @@ app.get(
     successRedirect: "http://localhost:1234/dashboard"
   })
 );
+
+// Create a tweet
+app.post("/tweet", (req, res) => {
+  console.log(req.body);
+  const tweet = new Tweet({
+    tweet: req.body.tweet,
+    createdBy: "5f401ad7df0ba630e49385b1"
+  });
+  tweet.save(function(e) {
+    if (e) console.log(e);
+  });
+  // Tweet.create({ body: 'My first tweet!', createdBy: '5f401ad7df0ba630e49385b1'})
+  res.send(`tweet ${tweet.id} created!`);
+});
+
+// Get a tweet
+app.get("/tweet/:id", (req, res) => {
+  Tweet.find({ _id: req.params.id })
+    .then(result => console.log(result))
+    .catch(e => console.error(e));
+  res.send("hi");
+});
+
+// Delete a tweet
+app.post("/tweet/:id", (req, res) => {
+  Tweet.findByIdAndDelete(req.params.id)
+    .then(response => console.log(response))
+    .catch(e => console.error(e));
+  res.send(`${req.params.id} is deleted`);
+});
+
+// Edit a tweet
+app.put("/tweet/:id", (req, res) => {
+  const tweet = { tweet: req.body.tweet, createdBy: req.body.createdBy };
+  Tweet.findByIdAndUpdate(req.params.id, tweet)
+    .then(response => console.log(response))
+    .catch(e => console.error(e));
+  res.send(`${req.body.tweet}`);
+});
 
 app.listen(process.env["PORT"] || 5000, () =>
   console.log("Server on port 5000")
