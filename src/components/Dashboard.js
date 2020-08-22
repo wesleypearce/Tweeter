@@ -40,7 +40,7 @@ const Dashboard = () => {
           </div>
           <div className="col-lg-6 border border bg-light order-lg-2">
             <div className="mb-2 mt-2">
-              <Tweet />
+              <Tweet user={user} />
             </div>
             <Feed user={user} />
           </div>
