@@ -30,7 +30,7 @@ const Profile = ({
       <a className="text-white d-block" href={url}>
         Website
       </a>
-      <button onClick={logout} className="btn btn-danger mt-2">
+      <button onClick={logout} className="btn btn-danger mt-2 mb-2">
         Logout
       </button>
     </div>

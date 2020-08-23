@@ -38,11 +38,8 @@ const Dashboard = () => {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-lg-3 border border order-lg-3">
-            <Sidebar />
-          </div>
-          <div className="col-lg-3 border border order-lg-1 text-white">
-            <div className="d-none d-lg-block">
+          <div className="col-lg-3 border border order-lg-1 order-xs-2 text-white">
+            <div className="d-lg-block">
               <Profile
                 name={user.name}
                 screen_name={user.screen_name}
@@ -54,7 +51,7 @@ const Dashboard = () => {
               />
             </div>
           </div>
-          <div className="col-lg-6 border border bg-light order-lg-2">
+          <div className="col-lg-9 border border bg-light order-lg-2 order-xs-1">
             <div className="mb-2 mt-2">
               <Tweet user={user} tweet={tweet} setTweet={setTweet} />
             </div>
