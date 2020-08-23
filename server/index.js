@@ -143,6 +143,7 @@ app.get("/logout", (req, res) => {
 app.get("/tweet", isLoggedIn, (req, res) => {
   Tweet.find()
     .populate("createdBy")
+    .sort({ createdAt: "desc" })
     .exec(function(err, tweets) {
       res.send(tweets);
     });
