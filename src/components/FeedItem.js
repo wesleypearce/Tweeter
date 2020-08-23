@@ -2,7 +2,6 @@ import React from "react";
 import ProfilePic from "./ProfilePic";
 
 const FeedItem = ({ item }) => {
-  console.log(item.createdAt);
   return (
     <div className="bg-light border border row">
       <div className="col-lg-2">

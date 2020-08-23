@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Input = ({ setInput, postInput }) => {
+const Input = ({ setInput, postInput, input }) => {
+  const [text, setText] = useState("");
+
+  const saveAndPost = () => {
+    // Post tweet and then setTweet afterwards to force refresh
+    postInput(text);
+    setInput(text);
+  };
   const handleClick = () => {
-    postInput();
+    saveAndPost();
   };
 
   const handleKeyPress = e => {
     // e.preventDefault();
     const key = e.keyCode || e.which;
-    if (key == 13) postInput();
+    if (key == 13) saveAndPost();
   };
 
   return (
@@ -19,7 +26,7 @@ const Input = ({ setInput, postInput }) => {
         id="tweet"
         aria-describedby="tweet"
         onKeyPress={e => handleKeyPress(e)}
-        onChange={e => setInput(e.target.value)}
+        onChange={e => setText(e.target.value)}
       />
       <div className="input-group-append">
         <button onClick={handleClick} className="btn btn-primary">

@@ -24,9 +24,12 @@ const Dashboard = () => {
       .get("http://localhost:5000/", { withCredentials: true })
       .then(response => {
         setUser(response.data);
-        getFeed();
       })
       .catch(e => console.error(e));
+  }, []);
+
+  useEffect(() => {
+    getFeed();
   }, [tweet]);
 
   if (user == null) {

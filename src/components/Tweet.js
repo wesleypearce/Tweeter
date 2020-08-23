@@ -4,10 +4,10 @@ import Input from "./Input";
 import axios from "axios";
 
 const Tweet = ({ user, tweet, setTweet }) => {
-  const postTweet = () => {
+  const postTweet = tweet => {
     axios
       .post("http://localhost:5000/tweet", { createdBy: user._id, tweet })
-      .then(() => console.log("Tweet posted!"))
+      .then(() => console.log({ createdBy: user._id, tweet }))
       .catch(e => console.error(e));
   };
 
@@ -17,7 +17,7 @@ const Tweet = ({ user, tweet, setTweet }) => {
         <ProfilePic image={user.profile_image_url_https} />
       </div>
       <div className="col-lg-10 mt-auto mb-1">
-        <Input setInput={setTweet} postInput={postTweet} />
+        <Input setInput={setTweet} postInput={postTweet} input={tweet} />
       </div>
     </div>
   );
