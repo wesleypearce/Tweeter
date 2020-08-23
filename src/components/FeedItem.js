@@ -2,6 +2,7 @@ import React from "react";
 import ProfilePic from "./ProfilePic";
 
 const FeedItem = ({ item }) => {
+  console.log(item.createdAt);
   return (
     <div className="bg-light border border row">
       <div className="col-lg-2">
@@ -9,7 +10,7 @@ const FeedItem = ({ item }) => {
       </div>
       <div className="col-lg-10">
         {item.createdBy.name}{" "}
-        <span className="text-muted">@{item.createdBy.name}</span>
+        <span className="text-muted">@{item.createdBy.screen_name}</span>
         <p>{item.tweet}</p>
       </div>
     </div>
