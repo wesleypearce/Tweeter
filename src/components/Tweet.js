@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ProfilePic from "./ProfilePic";
 import Input from "./Input";
 import axios from "axios";
@@ -6,7 +6,11 @@ import axios from "axios";
 const Tweet = ({ user, tweet, setTweet }) => {
   const postTweet = tweet => {
     axios
-      .post("http://localhost:5000/tweet", { createdBy: user._id, tweet })
+      .post(
+        "http://localhost:5000/tweet",
+        { createdBy: user._id, tweet },
+        { withCredentials: true }
+      )
       .then(() => console.log({ createdBy: user._id, tweet }))
       .catch(e => console.error(e));
   };

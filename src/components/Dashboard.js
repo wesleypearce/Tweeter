@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const getFeed = () => {
     axios
-      .get("http://localhost:5000/tweet")
+      .get("http://localhost:5000/tweet", { withCredentials: true })
       .then(response => {
         setFeed(response.data);
       })
@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/", { withCredentials: true })
+      .get("http://localhost:5000/user", { withCredentials: true })
       .then(response => {
         setUser(response.data);
       })
@@ -50,6 +50,7 @@ const Dashboard = () => {
                 description={user.description}
                 followers_count={user.followers_count}
                 profile_image_url_https={user.profile_image_url_https}
+                setUser={setUser}
               />
             </div>
           </div>

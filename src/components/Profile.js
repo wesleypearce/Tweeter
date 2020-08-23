@@ -1,5 +1,6 @@
 import React from "react";
 import ProfilePic from "./ProfilePic";
+import axios from "axios";
 
 const Profile = ({
   name,
@@ -7,9 +8,18 @@ const Profile = ({
   url,
   description,
   followers_count,
-  profile_banner_url_https,
   profile_image_url_https
 }) => {
+  const logout = ({ setUser }) => {
+    axios
+      .get("http://localhost:5000/logout")
+      .then(() => {
+        window.location.href = "http://localhost:1234/";
+        setUser(null);
+      })
+      .catch(e => console.error(e));
+  };
+
   return (
     <div>
       <ProfilePic image={profile_image_url_https} />
@@ -20,6 +30,9 @@ const Profile = ({
       <a className="text-white" href={url}>
         {url}
       </a>
+      <button onClick={logout} className="btn btn-danger">
+        Logout
+      </button>
     </div>
   );
 };

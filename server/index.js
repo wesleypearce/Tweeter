@@ -22,7 +22,6 @@ passport.use(
       includeEmail: true
     },
     function(token, tokenSecret, profile, cb) {
-      console.log(profile);
       User.findOrCreate(
         {
           twitterId: profile.id,
@@ -86,6 +85,14 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
+const isLoggedIn = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+};
+
 mongoose.connect("mongodb://wes:SedrfT6^@ds029496.mlab.com:29496/tweeter", {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -98,8 +105,13 @@ db.once("open", function() {
 });
 
 // Define routes.
-app.get("/", (req, res) => {
+app.get("/user", isLoggedIn, (req, res) => {
   res.send(req.user);
+});
+
+app.get("/login", (req, res) => {
+  console.log("you will need to log in sir");
+  res.send("you are not logged in");
 });
 
 app.get("/auth/twitter", passport.authenticate("twitter"));
@@ -112,6 +124,13 @@ app.get(
   })
 );
 
+app.get("/logout", (req, res) => {
+  req.logout();
+  console.log(`is authenticated ${req.isAuthenticated()}`);
+  console.log(`user is ${req.user}`);
+  res.redirect("/login");
+});
+
 // populates an array of objects
 // Tweet.find(function(err, tweets) {
 //   var opts = [{ path: "user", match: { x: 1 } }];
@@ -121,7 +140,7 @@ app.get(
 // });
 
 // Get all tweets
-app.get("/tweet", (req, res) => {
+app.get("/tweet", isLoggedIn, (req, res) => {
   Tweet.find()
     .populate("createdBy")
     .exec(function(err, tweets) {
@@ -138,7 +157,7 @@ app.get("/tweet", (req, res) => {
 });
 
 // Create a tweet
-app.post("/tweet", (req, res) => {
+app.post("/tweet", isLoggedIn, (req, res) => {
   console.log(req.body);
   const tweet = new Tweet({
     tweet: req.body.tweet,
@@ -152,7 +171,7 @@ app.post("/tweet", (req, res) => {
 });
 
 // Get a tweet
-app.get("/tweet/:id", (req, res) => {
+app.get("/tweet/:id", isLoggedIn, (req, res) => {
   Tweet.find({ _id: req.params.id })
     .then(result => console.log(result))
     .catch(e => console.error(e));
@@ -160,7 +179,7 @@ app.get("/tweet/:id", (req, res) => {
 });
 
 // Delete a tweet
-app.post("/tweet/:id", (req, res) => {
+app.post("/tweet/:id", isLoggedIn, (req, res) => {
   Tweet.findByIdAndDelete(req.params.id)
     .then(response => console.log(response))
     .catch(e => console.error(e));
@@ -168,7 +187,7 @@ app.post("/tweet/:id", (req, res) => {
 });
 
 // Edit a tweet
-app.put("/tweet/:id", (req, res) => {
+app.put("/tweet/:id", isLoggedIn, (req, res) => {
   const tweet = { tweet: req.body.tweet, createdBy: req.body.createdBy };
   Tweet.findByIdAndUpdate(req.params.id, tweet)
     .then(response => console.log(response))
