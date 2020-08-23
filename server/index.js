@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./resources/User");
 const Tweet = require("./resources/Tweet");
+const { consumerKey, consumerSecret } = require("../keys");
 
 // Configure the Twitter strategy for use by Passport.
 //
@@ -16,8 +17,8 @@ const Tweet = require("./resources/Tweet");
 passport.use(
   new Strategy(
     {
-      consumerKey: "bQl7EvgtZrPGI5eKzP4dlkn9G",
-      consumerSecret: "O3Oikfe7h8YhyuHXVj1pq8oBgYLnhPTigLbEsa24Gav0diIMf6",
+      consumerKey: consumerKey,
+      consumerSecret: consumerSecret,
       callbackURL: "/oauth/callback",
       includeEmail: true
     },

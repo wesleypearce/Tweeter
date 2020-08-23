@@ -7,5 +7,5 @@ $red: #AF1B3F;
 $pink: #F9627D;
 $grey: #DCDCDD;
 
-$theme-colors: ("primary": $blue);
+$theme-colors: ("primary": $blue, "warning": $red);
 @import "../node_modules/bootstrap/scss/bootstrap";

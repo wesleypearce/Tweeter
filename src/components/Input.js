@@ -8,6 +8,7 @@ const Input = ({ setInput, postInput, input }) => {
     postInput(text);
     setInput(text);
   };
+
   const handleClick = () => {
     saveAndPost();
   };
@@ -23,10 +24,10 @@ const Input = ({ setInput, postInput, input }) => {
       <input
         className="form-control"
         type="text"
-        id="tweet"
         aria-describedby="tweet"
         onKeyPress={e => handleKeyPress(e)}
         onChange={e => setText(e.target.value)}
+        placeholder="What's on your mind?"
       />
       <div className="input-group-append">
         <button onClick={handleClick} className="btn btn-primary">
