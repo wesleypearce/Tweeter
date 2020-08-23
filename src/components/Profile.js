@@ -27,10 +27,10 @@ const Profile = ({
       <p>{description}</p>
       <p className="lead">@{screen_name}</p>
       <p>Followers: {followers_count}</p>
-      <a className="text-white" href={url}>
-        {url}
+      <a className="text-white d-block" href={url}>
+        Website
       </a>
-      <button onClick={logout} className="btn btn-danger">
+      <button onClick={logout} className="btn btn-danger mt-2">
         Logout
       </button>
     </div>

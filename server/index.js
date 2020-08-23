@@ -111,7 +111,7 @@ app.get("/user", isLoggedIn, (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  console.log("you will need to log in sir");
+  console.log("you will need to log in sir or ma'am");
   res.send("you are not logged in");
 });
 
