@@ -112,6 +112,31 @@ app.get(
   })
 );
 
+// populates an array of objects
+// Tweet.find(function(err, tweets) {
+//   var opts = [{ path: "user", match: { x: 1 } }];
+
+//   var promise = Tweet.populate(tweets, opts);
+//   promise.then(console.log(tweets)).exec;
+// });
+
+// Get all tweets
+app.get("/tweet", (req, res) => {
+  Tweet.find()
+    .populate("createdBy")
+    .exec(function(err, tweets) {
+      res.send(tweets);
+    });
+  // populates an array of objects
+
+  // Tweet.find(function(err, tweets) {
+  //   var opts = [{ path: "user", match: { x: 1 }, select: "name" }];
+
+  //   var promise = User.populate(tweets, opts);
+  //   promise.then(res.send(tweets)).exec;
+  // });
+});
+
 // Create a tweet
 app.post("/tweet", (req, res) => {
   console.log(req.body);

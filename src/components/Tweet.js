@@ -3,9 +3,7 @@ import ProfilePic from "./ProfilePic";
 import Input from "./Input";
 import axios from "axios";
 
-const Tweet = ({ user }) => {
-  const [tweet, setTweet] = useState(null);
-
+const Tweet = ({ user, tweet, setTweet }) => {
   const postTweet = () => {
     axios
       .post("http://localhost:5000/tweet", { createdBy: user._id, tweet })

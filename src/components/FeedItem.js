@@ -5,12 +5,12 @@ const FeedItem = ({ item }) => {
   return (
     <div className="bg-light border border row">
       <div className="col-lg-2">
-        <ProfilePic image={item.user.profileImg} />
+        <ProfilePic image={item.createdBy.profile_image_url_https} />
       </div>
       <div className="col-lg-10">
-        {item.user.name}{" "}
-        <span className="text-muted">@{item.user.twitterName}</span>
-        <p>{item.text}</p>
+        {item.createdBy.name}{" "}
+        <span className="text-muted">@{item.createdBy.name}</span>
+        <p>{item.tweet}</p>
       </div>
     </div>
   );

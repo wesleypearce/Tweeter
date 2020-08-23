@@ -7,14 +7,27 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const [feed, setFeed] = useState([]);
+  const [tweet, setTweet] = useState(null);
+
+  const getFeed = () => {
+    axios
+      .get("http://localhost:5000/tweet")
+      .then(response => {
+        setFeed(response.data);
+      })
+      .catch(e => console.error(e));
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/", { withCredentials: true })
       .then(response => {
         setUser(response.data);
+        getFeed();
       })
       .catch(e => console.error(e));
-  }, []);
+  }, [tweet]);
 
   if (user == null) {
     return <div className="text-white">loading...</div>;
@@ -39,9 +52,9 @@ const Dashboard = () => {
           </div>
           <div className="col-lg-6 border border bg-light order-lg-2">
             <div className="mb-2 mt-2">
-              <Tweet user={user} />
+              <Tweet user={user} tweet={tweet} setTweet={setTweet} />
             </div>
-            <Feed user={user} />
+            <Feed feed={feed} />
           </div>
         </div>
       </div>
