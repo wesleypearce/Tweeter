@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const getFeed = () => {
     axios
-      .get("http://localhost:5000/tweet", { withCredentials: true })
+      .get("http://api.eztweeter.com/tweet", { withCredentials: true })
       .then(response => {
         setFeed(response.data);
       })
@@ -21,7 +21,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/user", { withCredentials: true })
+      .get("http://api.eztweeter.com/user", { withCredentials: true })
       .then(response => {
         setUser(response.data);
       })

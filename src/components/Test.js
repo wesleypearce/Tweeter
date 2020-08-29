@@ -5,7 +5,7 @@ const Test = () => {
   const [user, setUser] = useState({ username: "Undefined" });
   useEffect(() => {
     axios
-      .get("http://localhost:5000/", { withCredentials: true })
+      .get("http://api.eztweeter.com/", { withCredentials: true })
       .then(response => {
         setUser(response.data);
       })
