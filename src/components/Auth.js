@@ -2,7 +2,7 @@ import React from "react";
 
 const Auth = () => {
   const handleClick = () => {
-    window.open("http://api.eztweeter.com/auth/twitter", "_self");
+    window.open("https://api.eztweeter.com/auth/twitter", "_self");
   };
 
   return (

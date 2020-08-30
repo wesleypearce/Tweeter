@@ -7,7 +7,7 @@ const Tweet = ({ user, tweet, setTweet }) => {
   const postTweet = tweet => {
     axios
       .post(
-        "http://api.eztweeter.com/tweet",
+        "https://api.eztweeter.com/tweet",
         { createdBy: user._id, tweet },
         { withCredentials: true }
       )

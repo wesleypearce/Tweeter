@@ -122,7 +122,7 @@ app.get(
   "/oauth/callback",
   passport.authenticate("twitter", {
     failureRedirect: "/login",
-    successRedirect: "http://localhost:1234/dashboard"
+    successRedirect: "https://www.eztweeter.com/dashboard"
   })
 );
 

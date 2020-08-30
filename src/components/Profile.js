@@ -12,9 +12,9 @@ const Profile = ({
 }) => {
   const logout = ({ setUser }) => {
     axios
-      .get("http://api.eztweeter.com/logout")
+      .get("https://api.eztweeter.com/logout")
       .then(() => {
-        window.location.href = "http://localhost:1234/";
+        window.location.href = "https://www.eztweeter.com/";
         setUser(null);
       })
       .catch(e => console.error(e));
