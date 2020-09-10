@@ -1,8 +1,11 @@
 import React from "react";
+import { signInWithTwitter } from "../firebase";
+import { Redirect } from "@reach/router";
 
 const Auth = () => {
-  const handleClick = () => {
-    window.open("https://api.eztweeter.com/auth/twitter", "_self");
+  const handleClick = async () => {
+    const data = await signInWithTwitter();
+    return <Redirect to="/dashboard" />;
   };
 
   return (

@@ -5,10 +5,12 @@ import Feed from "./Feed";
 import Profile from "./Profile";
 import axios from "axios";
 
-const Dashboard = () => {
+const Dashboard = props => {
   const [user, setUser] = useState(null);
   const [feed, setFeed] = useState([]);
   const [tweet, setTweet] = useState(null);
+
+  console.log(props);
 
   const getFeed = () => {
     axios
