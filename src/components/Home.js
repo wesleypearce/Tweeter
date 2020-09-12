@@ -3,7 +3,7 @@ import HelloBox from "./HelloBox";
 import { firestore } from "../firebase";
 import regeneratorRuntime from "regenerator-runtime";
 
-const Home = () => {
+const Home = ({ user, setUser }) => {
   useEffect(() => {
     getSnapshot();
   });
@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <div>
-      <HelloBox />
+      <HelloBox user={user} setUser={setUser} />
     </div>
   );
 };

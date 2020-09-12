@@ -4,35 +4,25 @@ import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 import Profile from "./Profile";
 import axios from "axios";
+import { firestore } from "../firebase";
+import { collectIdsAndDocs } from "../utilities";
 
-const Dashboard = props => {
-  const [user, setUser] = useState(null);
+const Dashboard = ({ user, setUser }) => {
   const [feed, setFeed] = useState([]);
   const [tweet, setTweet] = useState(null);
 
-  console.log(props);
+  const getFeed = async () => {
+    const snapshot = await firestore.collection("tweets").get();
 
-  const getFeed = () => {
-    axios
-      .get("https://api.eztweeter.com/tweet", { withCredentials: true })
-      .then(response => {
-        setFeed(response.data);
-      })
-      .catch(e => console.error(e));
+    const feed = snapshot.docs.map(doc => {
+      return { id: doc.id, ...doc.data };
+    });
+    setFeed(feed);
   };
 
   useEffect(() => {
-    axios
-      .get("https://api.eztweeter.com/user", { withCredentials: true })
-      .then(response => {
-        setUser(response.data);
-      })
-      .catch(e => console.error(e));
-  }, []);
-
-  useEffect(() => {
     getFeed();
-  }, [tweet]);
+  });
 
   if (user == null) {
     return <div className="text-white">loading...</div>;
@@ -43,13 +33,11 @@ const Dashboard = props => {
           <div className="col-lg-3 border border order-lg-1 order-xs-2 text-white">
             <div className="d-lg-block">
               <Profile
-                name={user.name}
-                screen_name={user.screen_name}
-                url={user.url}
-                description={user.description}
-                followers_count={user.followers_count}
-                profile_image_url_https={user.profile_image_url_https}
-                setUser={setUser}
+                displayName={user.displayName}
+                photoURL={user.photoURL}
+                feed={feed}
+                setFeed={setFeed}
+                setTweet={setTweet}
               />
             </div>
           </div>

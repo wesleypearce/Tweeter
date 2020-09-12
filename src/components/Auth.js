@@ -1,12 +1,15 @@
 import React from "react";
 import { signInWithTwitter } from "../firebase";
-import { Redirect } from "@reach/router";
+import { navigate } from "@reach/router";
 
-const Auth = () => {
+const Auth = ({ user, setUser }) => {
   const handleClick = async () => {
     const data = await signInWithTwitter();
-    return <Redirect to="/dashboard" />;
+    setUser(data.user);
+    navigate("/dashboard");
   };
+
+  console.log(user);
 
   return (
     <div className="text-center">

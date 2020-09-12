@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Router>
       <Home path="/" user={user} setUser={setUser} />
-      <Dashboard path="/dashboard" />
+      <Dashboard path="/dashboard" user={user} setUser={setUser} />
     </Router>
   );
 };
