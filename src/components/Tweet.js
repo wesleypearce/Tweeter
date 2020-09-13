@@ -6,7 +6,9 @@ import { collectIdsAndDocs } from "../utilities";
 
 const Tweet = ({ user, tweet, feed, setFeed, setTweet }) => {
   const postTweet = async tweet => {
-    const docRef = await firestore.collection("tweets").add(tweet);
+    const docRef = await firestore
+      .collection("tweets")
+      .add({ createdBy: user.id, tweet });
     const doc = await docRef.get();
 
     const newTweet = collectIdsAndDocs(doc);

@@ -22,7 +22,7 @@ const Dashboard = ({ user, setUser }) => {
 
   useEffect(() => {
     getFeed();
-  });
+  }, []);
 
   if (user == null) {
     return <div className="text-white">loading...</div>;
