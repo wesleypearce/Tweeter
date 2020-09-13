@@ -22,6 +22,7 @@ const Dashboard = ({ user, setUser }) => {
 
   useEffect(() => {
     getFeed();
+    console.log(user);
   }, []);
 
   if (user == null) {

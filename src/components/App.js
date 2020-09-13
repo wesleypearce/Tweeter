@@ -10,10 +10,10 @@ const App = () => {
 
   let unsubscribeFromAuth = null;
 
-  unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-    console.log(user);
-    setUser(user);
-  });
+  // unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+  //   console.log(user);
+  //   setUser(user);
+  // });
 
   return (
     <Router>
