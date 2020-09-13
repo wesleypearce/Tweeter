@@ -1,7 +1,7 @@
 import React from "react";
 import { signInWithTwitter } from "../firebase";
 import { navigate } from "@reach/router";
-import { createUser, getUser } from "../firebase";
+import { createUser } from "../firebase";
 
 const Auth = ({ setUser }) => {
   const handleClick = async () => {

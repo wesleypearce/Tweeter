@@ -1,7 +1,6 @@
 import firebase from "@firebase/app";
 import "@firebase/firestore";
 import "@firebase/auth";
-import { registerFirestore } from "@firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -78,7 +77,7 @@ export const createUser = user => {
               console.error("Error adding document: ", error);
             });
 
-          return ref;
+          return ref.get();
         } else {
           const querySnapshot = await firestore
             .collection("users")

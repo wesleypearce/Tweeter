@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Tweet from "./Tweet";
-import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 import Profile from "./Profile";
-import axios from "axios";
 import { firestore } from "../firebase";
-import { collectIdsAndDocs } from "../utilities";
 
-const Dashboard = ({ user, setUser }) => {
+const Dashboard = ({ user }) => {
   const [feed, setFeed] = useState([]);
   const [tweet, setTweet] = useState(null);
 
