@@ -12,7 +12,7 @@ const Dashboard = ({ user }) => {
     const snapshot = await firestore.collection("tweets").get();
 
     const feed = snapshot.docs.map(doc => {
-      return { id: doc.id, ...doc.data };
+      return { id: doc.id, ...doc.data() };
     });
     setFeed(feed);
   };
@@ -41,7 +41,13 @@ const Dashboard = ({ user }) => {
           </div>
           <div className="col-lg-9 border border bg-light order-lg-2 order-xs-1">
             <div className="mb-2 mt-2">
-              <Tweet user={user} tweet={tweet} setTweet={setTweet} />
+              <Tweet
+                user={user}
+                feed={feed}
+                setFeed={setFeed}
+                tweet={tweet}
+                setTweet={setTweet}
+              />
             </div>
             <Feed feed={feed} />
           </div>

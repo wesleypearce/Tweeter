@@ -1,16 +1,16 @@
 import React from "react";
 import ProfilePic from "./ProfilePic";
 
-const FeedItem = ({ item }) => {
+const FeedItem = ({ tweet }) => {
   return (
     <div className="bg-light border border row">
       <div className="col-lg-2">
-        {/* <ProfilePic image={item.createdBy.user.photoURL} /> */}
+        <ProfilePic image={tweet.createdBy.photoURL} />
       </div>
       <div className="col-lg-10">
-        {/* {item.createdBy.user.displayName}{" "} */}
+        {tweet.createdBy.displayName}{" "}
         {/* <span className="text-muted">@{item.createdBy.screen_name}</span> */}
-        <p>{item.tweet}</p>
+        <p>{tweet.tweet}</p>
       </div>
     </div>
   );
