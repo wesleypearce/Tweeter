@@ -16,11 +16,11 @@ const Tweet = ({ user, tweet, feed, setFeed, setTweet }) => {
   };
 
   return (
-    <div className="row border bg-light">
-      <div className="col-lg-2">
+    <div className="bg-light d-flex">
+      <div className="mr-3">
         <ProfilePic image={user.photoURL} />
       </div>
-      <div className="col-lg-10 mt-auto mb-1">
+      <div className="w-100">
         <Input setInput={setTweet} postInput={postTweet} input={tweet} />
       </div>
     </div>

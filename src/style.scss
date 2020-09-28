@@ -7,5 +7,10 @@ $red: #AF1B3F;
 $pink: #F9627D;
 $grey: #DCDCDD;
 
+.profile-pic {
+  width: 48px;
+  height: 48px;
+}
+
 $theme-colors: ("primary": $blue, "warning": $red);
 @import "../node_modules/bootstrap/scss/bootstrap";
