@@ -1,6 +1,7 @@
 import firebase from "@firebase/app";
 import "@firebase/firestore";
 import "@firebase/auth";
+import regeneratorRuntime from "regenerator-runtime";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -99,6 +100,14 @@ export const createUser = user => {
       reject(Error("It broke"));
     }
   });
+};
+
+export const incrementLikes = async id => {
+  const doc = await firestore.collection("tweets").doc(id);
+  const snapshot = await doc.get();
+
+  let likes = snapshot.get("likes") + 1;
+  doc.update({ likes });
 };
 
 export const firestore = firebase.firestore();
