@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Tweet from "./Tweet";
-import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 import Profile from "./Profile";
-import axios from "axios";
+import { firestore } from "../firebase";
 
-const Dashboard = () => {
-  const [user, setUser] = useState(null);
+const Dashboard = ({ user }) => {
   const [feed, setFeed] = useState([]);
   const [tweet, setTweet] = useState(null);
 
-  const getFeed = () => {
-    axios
-      .get("https://api.eztweeter.com/tweet", { withCredentials: true })
-      .then(response => {
-        setFeed(response.data);
-      })
-      .catch(e => console.error(e));
+  const getFeed = async () => {
+    const snapshot = await firestore.collection("tweets").get();
+
+    const feed = snapshot.docs.map(doc => {
+      return { id: doc.id, ...doc.data() };
+    });
+    setFeed(feed);
   };
 
   useEffect(() => {
-    axios
-      .get("https://api.eztweeter.com/user", { withCredentials: true })
-      .then(response => {
-        setUser(response.data);
-      })
-      .catch(e => console.error(e));
-  }, []);
-
-  useEffect(() => {
     getFeed();
-  }, [tweet]);
+    console.log(user);
+  }, []);
 
   if (user == null) {
     return <div className="text-white">loading...</div>;
@@ -41,19 +31,23 @@ const Dashboard = () => {
           <div className="col-lg-3 border border order-lg-1 order-xs-2 text-white">
             <div className="d-lg-block">
               <Profile
-                name={user.name}
-                screen_name={user.screen_name}
-                url={user.url}
-                description={user.description}
-                followers_count={user.followers_count}
-                profile_image_url_https={user.profile_image_url_https}
-                setUser={setUser}
+                displayName={user.displayName}
+                photoURL={user.photoURL}
+                feed={feed}
+                setFeed={setFeed}
+                setTweet={setTweet}
               />
             </div>
           </div>
           <div className="col-lg-9 border border bg-light order-lg-2 order-xs-1">
             <div className="mb-2 mt-2">
-              <Tweet user={user} tweet={tweet} setTweet={setTweet} />
+              <Tweet
+                user={user}
+                feed={feed}
+                setFeed={setFeed}
+                tweet={tweet}
+                setTweet={setTweet}
+              />
             </div>
             <Feed feed={feed} />
           </div>

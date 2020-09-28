@@ -3,8 +3,8 @@ import FeedItem from "./FeedItem";
 
 const Feed = ({ feed }) => {
   const renderFeed = () => {
-    return feed.map(item => {
-      return <FeedItem key={item._id} item={item} />;
+    return feed.map(tweet => {
+      return <FeedItem key={tweet.id} tweet={tweet} />;
     });
   };
   return <div className="border">{renderFeed()}</div>;
