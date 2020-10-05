@@ -11,12 +11,14 @@ const FeedItem = ({ tweet }) => {
   };
 
   return (
-    <div className="bg-light d-flex">
+    <div className="bg-light d-flex border">
       <div className="mr-3">
         <ProfilePic image={tweet.createdBy.photoURL} />
       </div>
       <div>
-        {tweet.createdBy.displayName}{" "}
+        <span className="font-weight-bold text-primary">
+          {tweet.createdBy.displayName}{" "}
+        </span>
         {/* <span className="text-muted">@{item.createdBy.screen_name}</span> */}
         <p>{tweet.tweet}</p>
         <p>
