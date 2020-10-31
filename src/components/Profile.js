@@ -1,17 +1,18 @@
 import React from "react";
 import ProfilePic from "./ProfilePic";
+import firebase, { signOut } from "../firebase";
+import "@firebase/auth";
 
 const Profile = ({ displayName, photoURL }) => {
-  const logout = () => {
-    console.log("logged out... psyche");
+  const handleClick = () => {
+    console.log(firebase.auth);
+    signOut();
   };
-  console.log(JSON.stringify(displayName));
-
   return (
     <div>
       <ProfilePic image={photoURL} />
       <h1 className="display-4">{displayName}</h1>
-      <button onClick={logout} className="btn btn-danger mt-2 mb-2">
+      <button onClick={handleClick} className="btn btn-danger mt-2 mb-2">
         Logout
       </button>
     </div>

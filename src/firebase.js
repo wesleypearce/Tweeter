@@ -45,6 +45,8 @@ export const signInWithTwitter = () =>
       console.log({ errorCode, errorMessage, email, credential });
     });
 
+export const signOut = () => auth.signOut();
+
 export const getUser = snapshot => {
   return new Promise(async (resolve, reject) => {
     console.log({ snapshot });

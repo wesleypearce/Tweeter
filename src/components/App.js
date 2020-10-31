@@ -11,7 +11,7 @@ const App = () => {
     photoURL:
       "https://pbs.twimg.com/profile_images/755566822930296832/ub182pct_normal.jpg"
   };
-  const [user, setUser] = useState(defaultUser);
+  const [user, setUser] = useState();
 
   return (
     <Router>
